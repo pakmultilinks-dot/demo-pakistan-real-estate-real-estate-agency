@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#15803d" />
+  <meta name="description" content="Free demo concept website for Pakistan Real Estate, a real estate agency in Lahore. Not the business's official site." />
+  <link rel="icon" href="data:," />
+  <title>Pakistan Real Estate - Demo Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-2: #f1f5f9;
+      --ink: #14202e;
+      --muted: #5b6b7d;
+      --accent: #15803d;
+      --accent-strong: #166534;
+      --accent-soft: #dcfce7;
+      --line: #dbe3ec;
+      --warm: #f6ead7;
+      --warm-ink: #7a4e16;
+      --danger: #b64141;
+      --shadow: 0 18px 45px rgba(20, 40, 70, .09);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 11px;
+      --font-body: "DM Sans", sans-serif;
+      --font-display: "Manrope", sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b121c;
+        --surface: #121c28;
+        --surface-2: #182636;
+        --ink: #edf3f9;
+        --muted: #a9bccd;
+        --accent: #7fdc9c;
+        --accent-strong: #a7ecb8;
+        --accent-soft: #1c2c40;
+        --line: #27374a;
+        --warm: #372d1c;
+        --warm-ink: #f1c77b;
+        --danger: #ff9292;
+        --shadow: 0 20px 55px rgba(0, 0, 0, .25);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+    body { margin: 0; min-width: 320px; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.65; text-rendering: optimizeLegibility; }
+    body.menu-open { overflow: hidden; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .skip-link { position: fixed; z-index: 1000; top: 10px; left: 10px; padding: 10px 14px; background: var(--surface); color: var(--ink); border-radius: 8px; transform: translateY(-160%); }
+    .skip-link:focus { transform: translateY(0); }
+    .demo-strip { background: #101418; color: #ffe9a8; text-align: center; font-weight: 700; font-size: .85rem; letter-spacing: .02em; padding: 9px 20px; }
+    header { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--surface) 94%, transparent); border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
+    .nav-wrap { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; }
+    .brand-mark { width: 36px; height: 36px; color: var(--accent); flex: 0 0 auto; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: .94rem; padding: 10px 13px; border-radius: 9px; }
+    .nav-links a:hover, .nav-links a:focus-visible { background: var(--surface-2); color: var(--accent-strong); outline: none; }
+    .nav-cta { background: var(--accent) !important; color: #fff !important; }
+    .menu-toggle { display: none; border: 0; background: transparent; color: var(--ink); padding: 8px; border-radius: 8px; cursor: pointer; }
+    .menu-toggle svg { width: 25px; height: 25px; }
+    .section { padding: 96px 0; }
+    .section.alt { background: var(--surface); }
+    .section-head { max-width: 700px; margin-bottom: 42px; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 8px; }
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; margin: 0; letter-spacing: -.035em; }
+    h1 { font-size: clamp(2.5rem, 6.4vw, 4.9rem); max-width: 840px; }
+    h2 { font-size: clamp(2rem, 4.4vw, 3.4rem); }
+    h3 { font-size: 1.18rem; letter-spacing: -.02em; }
+    p { margin: 0; }
+    .section-head > p:last-child { color: var(--muted); font-size: 1.05rem; margin-top: 15px; }
+    .hero { padding: 74px 0 80px; overflow: hidden; position: relative; }
+    .hero::before { content: ""; position: absolute; width: 520px; height: 520px; border: 90px solid var(--accent-soft); border-radius: 50%; right: -160px; top: -230px; opacity: .75; pointer-events: none; }
+    .hero::after { content: ""; position: absolute; width: 340px; height: 340px; border-radius: 50%; left: -170px; bottom: -190px; background: var(--accent-soft); opacity: .55; pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); gap: 64px; align-items: center; position: relative; }
+    .hero-copy .eyebrow { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-copy .eyebrow::before { content: ""; width: 34px; height: 2px; background: var(--accent); }
+    .hero-copy > p:not(.eyebrow) { color: var(--muted); max-width: 650px; font-size: clamp(1.05rem, 2vw, 1.22rem); margin-top: 22px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 20px; border-radius: 12px; text-decoration: none; border: 1px solid transparent; font-weight: 700; cursor: pointer; transition: background .2s ease, border-color .2s ease, color .2s ease; }
+    .btn svg { width: 19px; height: 19px; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover, .btn-primary:focus-visible { background: var(--accent-strong); }
+    .btn-secondary { background: var(--surface); color: var(--ink); border-color: var(--line); }
+    .btn-secondary:hover, .btn-secondary:focus-visible { border-color: var(--accent); color: var(--accent-strong); }
+    .hero-notes { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 30px; color: var(--muted); font-size: .9rem; }
+    .hero-note { display: inline-flex; align-items: center; gap: 7px; }
+    .hero-note svg { width: 17px; height: 17px; color: var(--accent); }
+    .guide-panel { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 26px; box-shadow: var(--shadow); }
+    .guide-panel::after { content: ""; position: absolute; inset: auto 28px -9px 28px; height: 9px; border-radius: 0 0 10px 10px; background: var(--accent-soft); }
+    .guide-title { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; margin: 0 0 4px; }
+    .guide-sub { color: var(--muted); font-size: .9rem; margin-bottom: 16px; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .chip { border: 1px solid var(--line); background: var(--bg); color: var(--muted); font-weight: 700; font-size: .85rem; padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+    .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .guide-result { background: var(--surface-2); border-radius: 14px; padding: 18px; min-height: 190px; }
+    .guide-result h3 { margin-bottom: 8px; }
+    .guide-result p { color: var(--muted); font-size: .94rem; }
+    .guide-result ul { margin: 10px 0 0; padding-left: 20px; color: var(--muted); font-size: .94rem; display: grid; gap: 6px; }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .service-card { padding: 28px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-md); transition: transform .2s ease, box-shadow .2s ease; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .service-icon { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 14px; background: var(--accent-soft); color: var(--accent); margin-bottom: 22px; }
+    .service-icon svg { width: 26px; height: 26px; }
+    .service-card > p { color: var(--muted); margin-top: 9px; font-size: .95rem; }
+    .service-card .mini-list { list-style: none; margin: 16px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; font-size: .9rem; color: var(--muted); }
+    .mini-list li { display: flex; gap: 8px; align-items: flex-start; }
+    .mini-list li svg { width: 15px; height: 15px; color: var(--accent); flex: 0 0 auto; margin-top: 4px; }
+    .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .area-card { position: relative; overflow: hidden; border-radius: var(--radius-md); border: 1px solid var(--line); padding: 26px; min-height: 210px; display: flex; flex-direction: column; justify-content: flex-end; background: var(--surface); }
+    .area-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, var(--accent-soft) 0%, transparent 70%); opacity: .9; pointer-events: none; }
+    .area-card > * { position: relative; }
+    .area-tag { position: absolute; top: 18px; left: 18px; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-strong); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; }
+    .area-card > p { color: var(--muted); font-size: .92rem; margin-top: 8px; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: step; }
+    .step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 26px 22px; }
+    .step-num { font-family: var(--font-display); font-weight: 800; font-size: 2.2rem; color: var(--accent); opacity: .85; }
+    .step h3 { margin: 10px 0 8px; }
+    .step p { color: var(--muted); font-size: .93rem; }
+    .why-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 48px; align-items: start; }
+    .why-intro { position: sticky; top: 112px; }
+    .why-intro p { color: var(--muted); margin-top: 16px; }
+    .why-list { display: grid; }
+    .why-row { display: grid; grid-template-columns: 52px 1fr; gap: 18px; padding: 24px 0; border-top: 1px solid var(--line); }
+    .why-row:last-child { border-bottom: 1px solid var(--line); }
+    .why-icon { width: 52px; height: 52px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; }
+    .why-icon svg { width: 24px; height: 24px; }
+    .why-row p { color: var(--muted); margin-top: 6px; font-size: .95rem; }
+    .cta-banner { background: linear-gradient(120deg, var(--accent-strong), var(--accent)); color: #fff; border-radius: var(--radius-lg); padding: 56px; display: grid; grid-template-columns: 1.3fr .7fr; gap: 40px; align-items: center; position: relative; overflow: hidden; }
+    .cta-banner::before { content: ""; position: absolute; width: 420px; height: 420px; border: 70px solid rgba(255,255,255,.12); border-radius: 50%; right: -140px; top: -200px; }
+    .cta-banner h2 { color: #fff; }
+    .cta-banner p { color: rgba(255,255,255,.85); margin-top: 14px; max-width: 520px; }
+    .cta-actions { display: grid; gap: 12px; position: relative; }
+    .btn-light { background: #fff; color: var(--accent-strong); }
+    .btn-light:hover { background: rgba(255,255,255,.92); }
+    .btn-outline-light { border-color: rgba(255,255,255,.6); color: #fff; }
+    .btn-outline-light:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+    .contact-grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: 54px; }
+    .contact-copy > p { color: var(--muted); margin-top: 15px; }
+    .contact-details { margin-top: 30px; display: grid; gap: 20px; }
+    .contact-detail { display: grid; grid-template-columns: 38px 1fr; gap: 12px; }
+    .contact-detail svg { width: 22px; height: 22px; color: var(--accent); margin-top: 3px; }
+    .contact-detail strong { display: block; }
+    .contact-detail span, .contact-detail a { color: var(--muted); text-decoration: none; }
+    .placeholder-tag { display: inline-block; padding: 2px 7px; border-radius: 5px; background: var(--warm); color: var(--warm-ink) !important; font-size: .72rem; font-weight: 700; margin-left: 5px; }
+    .contact-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .contact-form { background: var(--surface); padding: 30px; border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 7px; }
+    .field input, .field textarea, .field select { width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); padding: 12px 13px; outline: none; }
+    .field textarea { resize: vertical; min-height: 126px; }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .field [aria-invalid="true"] { border-color: var(--danger); }
+    .error { color: var(--danger); font-size: .78rem; min-height: 20px; margin-top: 3px; }
+    .form-footer { display: flex; align-items: center; gap: 16px; margin-top: 18px; }
+    .form-note { color: var(--muted); font-size: .82rem; line-height: 1.4; }
+    .form-message { display: none; margin-top: 15px; padding: 12px 14px; background: var(--accent-soft); color: var(--accent-strong); border-radius: 10px; font-weight: 700; }
+    .form-message.show { display: block; }
+    footer { padding: 38px 0 max(38px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); }
+    .footer-wrap { display: grid; gap: 14px; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .footer-credit { font-family: var(--font-display); font-weight: 700; }
+    .footer-note { color: var(--muted); font-size: .9rem; max-width: 860px; background: var(--surface-2); border: 1px dashed var(--line); border-radius: 12px; padding: 16px 18px; }
+    .footer-note strong { color: var(--ink); }
+    :focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 3px; }
+    @media (max-width: 900px) {
+      .hero-grid, .contact-grid, .why-layout, .cta-banner { grid-template-columns: 1fr; }
+      .hero-grid { gap: 48px; }
+      .service-grid, .areas-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .why-intro { position: static; }
+      .cta-banner { padding: 40px 28px; }
+    }
+    @media (max-width: 740px) {
+      .container { width: min(100% - 30px, 620px); }
+      .demo-strip { font-size: .75rem; }
+      .nav-wrap { min-height: 64px; }
+      .brand { font-size: .95rem; }
+      .menu-toggle { display: inline-grid; place-items: center; }
+      .nav-links { position: fixed; top: 105px; left: 15px; right: 15px; display: none; padding: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+      .nav-links.open { display: grid; }
+      .nav-links a { padding: 12px 13px; }
+      .section { padding: 72px 0; }
+      .hero { padding: 54px 0 66px; }
+      .service-grid, .areas-grid, .steps { grid-template-columns: 1fr; }
+      .hero-actions { display: grid; grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .hero-notes { display: grid; gap: 9px; }
+      .guide-panel { padding: 20px; border-radius: 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .contact-form { padding: 21px; border-radius: 20px; }
+      .form-footer { display: grid; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="demo-strip" role="note">FREE DEMO CONCEPT: this is a sample website made to show what Pakistan Real Estate's site could look like. It is not the business's official website.</div>
+  <header>
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Pakistan Real Estate home">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="M8 44V18l12-10 12 10v26h-8V28h-8v16H8Z"/><path fill="var(--surface)" d="M20 12h8v4h-8v-4Z"/><circle fill="currentColor" cx="24" cy="14" r="3"/></svg>
+        <span>Pakistan Real Estate</span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav-links" id="nav-links" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#areas">Areas</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="https://wa.me/923000000000" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Real estate services in Lahore</p>
+          <h1>Pakistan Real Estate: houses, plots, and commercial options across Lahore.</h1>
+          <p>Pakistan Real Estate is a Lahore real estate agency located on Model Town Link Road, Phase 3 GECH Society. This demo concept shows what the agency's own website could look like.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/923000000000" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.8 9.8 0 0 1-3.8-.9L3 20.5l1.5-5a8.5 8.5 0 1 1 16.5-4Z"/><path d="M8.4 8.3c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4 0 .6l-.6.9c-.1.2-.1.4 0 .6.6 1.1 1.5 1.9 2.6 2.5.2.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.3.4.5 0 .3-.1 1.4-.7 2-.5.6-1.4.8-2.3.7-1.2-.2-2.7-.8-4.4-2.3-1.3-1.2-2.3-2.6-2.7-3.8-.4-1-.3-2.1.3-2.9Z"/></svg>
+              Chat on WhatsApp
+            </a>
+            <a class="btn btn-secondary" href="#areas">Areas We Serve</a>
+          </div>
+          <div class="hero-notes" aria-label="Service highlights">
+            <span class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Buy, sell, and rent guidance</span>
+            <span class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Lahore-focused</span>
+          </div>
+        </div>
+
+        <aside class="guide-panel" aria-labelledby="guide-title">
+          <h2 class="guide-title" id="guide-title">What are you looking to do?</h2>
+          <p class="guide-sub">Tap your goal and property type for quick guidance.</p>
+          <div class="chip-row" role="group" aria-label="Your goal">
+            <button class="chip active" type="button" data-goal="buy">Buy</button>
+            <button class="chip" type="button" data-goal="sell">Sell</button>
+            <button class="chip" type="button" data-goal="rent">Rent</button>
+          </div>
+          <div class="chip-row" role="group" aria-label="Property type">
+            <button class="chip active" type="button" data-type="house">House</button>
+            <button class="chip" type="button" data-type="plot">Plot</button>
+            <button class="chip" type="button" data-type="apartment">Apartment</button>
+            <button class="chip" type="button" data-type="commercial">Commercial</button>
+          </div>
+          <div class="guide-result" id="guide-result" aria-live="polite"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section alt" id="services">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Our services</p>
+          <h2>Property services for every stage.</h2>
+          <p>Whether you are buying your first home, selling a family property, or listing a rental, the agency walks you through each step.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></div>
+            <h3>Buy Property</h3>
+            <p>Help finding houses, plots, apartments, and commercial property that fit your budget and requirements.</p>
+            <ul class="mini-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Requirement discussion and area shortlisting</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Arranged site visits across Lahore</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Negotiation and paperwork support</li>
+            </ul>
+          </article>
+          <article class="service-card">
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H4z"/><path d="m4 16 4-5 4 3 4-4 4 3v3H4z"/><path d="M8 21h8"/></svg></div>
+            <h3>Sell Property</h3>
+            <p>Support in presenting your property well and reaching serious, verified buyers.</p>
+            <ul class="mini-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Property valuation guidance</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Marketing to genuine buyer inquiries</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Coordination through to the deal</li>
+            </ul>
+          </article>
+          <article class="service-card">
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
+            <h3>Rent &amp; Lease</h3>
+            <p>Rental matchmaking for tenants and owners, with clear terms from day one.</p>
+            <ul class="mini-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Rental listings for homes and shops</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Tenant screening conversations</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Rent agreement documentation help</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="areas">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Areas served</p>
+          <h2>Serving Lahore's key neighbourhoods.</h2>
+          <p>Every area has its own market rhythm. These are some of the localities the agency regularly works in.</p>
+        </div>
+        <div class="areas-grid">
+          <article class="area-card"><span class="area-tag">Popular</span><h3>DHA Lahore</h3><p>Developed phases with houses, plots, and commercial options; a frequent first choice for families moving to Lahore.</p></article>
+          <article class="area-card"><span class="area-tag">Home base</span><h3>Model Town</h3><p>One of Lahore's most established societies, with strong demand for both residential and commercial property.</p></article>
+          <article class="area-card"><span class="area-tag">Residential</span><h3>Wapda Town</h3><p>A settled, well-planned neighbourhood popular with long-term residents and steady rental interest.</p></article>
+          <article class="area-card"><span class="area-tag">Growing</span><h3>Johar Town</h3><p>A fast-growing area with a mix of houses, apartments, and commercial activity near key city routes.</p></article>
+          <article class="area-card"><span class="area-tag">Investment</span><h3>Valencia Town</h3><p>Planned blocks that attract both end-users and investors looking for plots and houses.</p></article>
+          <article class="area-card"><span class="area-tag">Residential</span><h3>Lake City</h3><p>A gated community on the city's edge with modern housing and lifestyle-focused developments.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="process">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">How it works</p>
+          <h2>A simple, transparent process.</h2>
+          <p>Four straightforward steps from first call to final paperwork.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><div class="step-num">01</div><h3>Talk to us</h3><p>Share your requirement on WhatsApp or by phone: budget, preferred areas, and timeline.</p></article>
+          <article class="step"><div class="step-num">02</div><h3>Shortlist &amp; visit</h3><p>Get a shortlist of suitable options and visit them at a time that suits you.</p></article>
+          <article class="step"><div class="step-num">03</div><h3>Negotiate fairly</h3><p>Guidance on realistic pricing and respectful negotiation with the other party.</p></article>
+          <article class="step"><div class="step-num">04</div><h3>Complete paperwork</h3><p>Support with documentation so the transfer or agreement is handled properly.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container why-layout">
+        <div class="why-intro section-head">
+          <p class="eyebrow">Why choose us</p>
+          <h2>Straightforward help, no pressure.</h2>
+          <p>Property decisions are big. The aim is simple: clear information, honest advice, and follow-through until the deal is done.</p>
+        </div>
+        <div class="why-list">
+          <article class="why-row">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+            <div><h3>Local-area focus</h3><p>Based in Lahore with day-to-day familiarity of the societies and markets it serves.</p></div>
+          </article>
+          <article class="why-row">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 4 7v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V7l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <div><h3>Verified before you visit</h3><p>Options are screened for basic documentation and ownership clarity before site visits are arranged.</p></div>
+          </article>
+          <article class="why-row">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.8 9.8 0 0 1-3.8-.9L3 20.5l1.5-5a8.5 8.5 0 1 1 16.5-4Z"/></svg></div>
+            <div><h3>One point of contact</h3><p>Deal with the same person from first call to final paperwork, on WhatsApp or by phone.</p></div>
+          </article>
+          <article class="why-row">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></div>
+            <div><h3>Paperwork support</h3><p>Guidance through sale deeds, transfer formalities, and rent agreements so nothing is left vague.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <h2>Looking to buy, sell, or rent in Lahore?</h2>
+            <p>Message on WhatsApp with your requirement, budget, and preferred area, and get a clear next step.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-light" href="https://wa.me/923000000000" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.8 9.8 0 0 1-3.8-.9L3 20.5l1.5-5a8.5 8.5 0 1 1 16.5-4Z"/><path d="M8.4 8.3c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4 0 .6l-.6.9c-.1.2-.1.4 0 .6.6 1.1 1.5 1.9 2.6 2.5.2.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.3.4.5 0 .3-.1 1.4-.7 2-.5.6-1.4.8-2.3.7-1.2-.2-2.7-.8-4.4-2.3-1.3-1.2-2.3-2.6-2.7-3.8-.4-1-.3-2.1.3-2.9Z"/></svg>
+              WhatsApp +92 300 0000000
+            </a>
+            <a class="btn btn-outline-light" href="tel:+923000000000">Call +92 300 0000000</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="contact" style="padding-top:0">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <p class="eyebrow">Contact</p>
+          <h2>Start with a conversation.</h2>
+          <p>Tell us what you are looking for, or visit the office during working hours.</p>
+          <div class="contact-details">
+            <div class="contact-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><div><strong>Visit the office</strong><span>Model Town Link Rd, Phase 3 GECH Society, Lahore</span></div></div>
+            <div class="contact-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg><div><strong>Call or WhatsApp</strong><a href="tel:+923000000000">+92 300 0000000</a><span class="placeholder-tag">placeholder</span></div></div>
+          </div>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="https://wa.me/923000000000" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-grid">
+            <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required minlength="2" /><div class="error" id="name-error"></div></div>
+            <div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="03XX XXXXXXX" /><div class="error" id="phone-error"></div></div>
+            <div class="field full"><label for="interest">I am interested in</label>
+              <select id="interest" name="interest">
+                <option>Buying a property</option>
+                <option>Selling a property</option>
+                <option>Renting a property</option>
+                <option>Listing a rental</option>
+                <option>General inquiry</option>
+              </select>
+            </div>
+            <div class="field full"><label for="message">Your requirement</label><textarea id="message" name="message" required minlength="10" placeholder="For example: 10 marla house for purchase in Model Town, budget around..."></textarea><div class="error" id="message-error"></div></div>
+          </div>
+          <div class="form-footer"><button class="btn btn-primary" type="submit">Check message</button><span class="form-note">This demo validates your message on this page; it does not send or store it.</span></div>
+          <div class="form-message" id="form-message" role="status">Looks good - your message passed validation. This is a demo, so nothing was sent.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div class="footer-top">
+        <p class="footer-credit">Pakistan Real Estate - free demo concept</p>
+        <p style="color:var(--muted);font-size:.9rem;margin:0">Demo website crafted by LumenMirage Studio</p>
+      </div>
+      <p class="footer-note"><strong>Free demo concept:</strong> this website is a sample design made to show what Pakistan Real Estate's own website could look like. It is not the business's official website, and any details shown (including the phone number +92 300 0000000) are illustrative placeholders, not verified facts.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var guideData = {
+        buy: {
+          house: { title: "Buying a house", body: "Start by fixing your budget range and 2-3 preferred areas, then arrange daytime site visits.", tips: ["Visit in daylight to check construction and street condition", "Ask for ownership and approval documents early", "Compare a few options before negotiating"] },
+          plot: { title: "Buying a plot", body: "Plots suit long-term plans. Confirm the block, plot dimensions, and development status in person.", tips: ["Walk the actual plot, not just the map", "Check transfer and development charges", "Confirm possession timeline in writing"] },
+          apartment: { title: "Buying an apartment", body: "Apartments work well for city living. Compare floor, facing, and maintenance costs.", tips: ["Check building maintenance and management", "Visit at different times of day", "Review the apartment's legal file"] },
+          commercial: { title: "Buying commercial property", body: "Commercial decisions are about footfall and returns. Study the market's activity before committing.", tips: ["Observe customer traffic on weekdays and weekends", "Check rental demand in the same market", "Verify commercial approvals and NOCs"] }
+        },
+        sell: {
+          house: { title: "Selling a house", body: "A well-presented house with clear documents sells faster. Get a realistic valuation first.", tips: ["Get a realistic market valuation, not a hopeful one", "Fix small repairs before showing the house", "Keep ownership documents ready for buyers"] },
+          plot: { title: "Selling a plot", body: "Plot buyers compare blocks and rates. Clear paperwork makes your plot stand out.", tips: ["Know the current rate trend in your block", "Have the file/transfer documents ready", "Be open about any dues or charges"] },
+          apartment: { title: "Selling an apartment", body: "Highlight the building's management, maintenance record, and location advantages.", tips: ["Gather maintenance receipts and records", "Show the apartment clean and well-lit", "Price in line with recent building sales"] },
+          commercial: { title: "Selling commercial property", body: "Commercial buyers look at income potential. Document any existing rental history.", tips: ["Share verified rental income history if any", "Highlight footfall and market position", "Keep commercial approvals documented"] }
+        },
+        rent: {
+          house: { title: "Renting a house", body: "Decide your must-haves first: bedrooms, commute, and budget. Then shortlist 3-4 options.", tips: ["Check water, gas, and electricity arrangements", "Clarify maintenance responsibilities in the agreement", "Meet the landlord or manager before deciding"] },
+          plot: { title: "Renting a plot", body: "Plot rentals are usually for parking, storage, or events. Agree on use terms clearly.", tips: ["Define the permitted use in writing", "Agree on boundary and access terms", "Set a clear notice period for ending the arrangement"] },
+          apartment: { title: "Renting an apartment", body: "Apartments are popular rentals. Confirm what the monthly maintenance covers.", tips: ["Ask exactly what maintenance charges include", "Check parking and lift arrangements", "Get a written rent agreement with clear terms"] },
+          commercial: { title: "Renting commercial space", body: "For shops and offices, location and lease terms matter most. Read every clause.", tips: ["Confirm lease duration and renewal terms", "Clarify who pays for fit-out and repairs", "Check signage and operating-hour rules"] }
+        }
+      };
+      var goal = "buy", type = "house";
+      var result = document.getElementById("guide-result");
+      function renderGuide() {
+        var d = guideData[goal][type];
+        result.innerHTML = "<h3>" + d.title + "</h3><p>" + d.body + "</p><ul>" + d.tips.map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ul>";
+      }
+      document.querySelectorAll(".chip").forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          var group = chip.getAttribute("data-goal") ? "goal" : "type";
+          document.querySelectorAll('.chip[data-' + group + ']').forEach(function (c) { c.classList.remove("active"); });
+          chip.classList.add("active");
+          if (group === "goal") goal = chip.getAttribute("data-goal"); else type = chip.getAttribute("data-type");
+          renderGuide();
+        });
+      });
+      renderGuide();
+
+      var menuToggle = document.getElementById("menu-toggle");
+      var navLinks = document.getElementById("nav-links");
+      function closeMenu() {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        document.body.classList.remove("menu-open");
+      }
+      menuToggle.addEventListener("click", function () {
+        var isOpen = navLinks.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+        document.body.classList.toggle("menu-open", isOpen);
+      });
+      navLinks.addEventListener("click", function (event) { if (event.target.closest("a")) closeMenu(); });
+      window.addEventListener("resize", function () { if (window.innerWidth > 740) closeMenu(); });
+      document.addEventListener("keydown", function (event) { if (event.key === "Escape") closeMenu(); });
+
+      var form = document.getElementById("contact-form");
+      var formMessage = document.getElementById("form-message");
+      var fields = {
+        name: document.getElementById("name"),
+        phone: document.getElementById("phone"),
+        message: document.getElementById("message")
+      };
+      function setError(name, message) {
+        fields[name].setAttribute("aria-invalid", message ? "true" : "false");
+        document.getElementById(name + "-error").textContent = message;
+      }
+      function validate() {
+        var valid = true;
+        var name = fields.name.value.trim();
+        var phone = fields.phone.value.trim();
+        var message = fields.message.value.trim();
+        setError("name", name.length < 2 ? "Please enter at least 2 characters." : "");
+        setError("phone", !/^[+0-9][0-9 +()-]{8,17}$/.test(phone) ? "Please enter a valid phone number." : "");
+        setError("message", message.length < 10 ? "Please add at least 10 characters." : "");
+        if (name.length < 2 || !/^[+0-9][0-9 +()-]{8,17}$/.test(phone) || message.length < 10) valid = false;
+        return valid;
+      }
+      Object.keys(fields).forEach(function (name) {
+        fields[name].addEventListener("input", function () {
+          setError(name, "");
+          formMessage.classList.remove("show");
+        });
+      });
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        formMessage.classList.remove("show");
+        if (validate()) {
+          formMessage.classList.add("show");
+          formMessage.focus();
+        } else {
+          var firstInvalid = form.querySelector('[aria-invalid="true"]');
+          if (firstInvalid) firstInvalid.focus();
+        }
+      });
+    }());
+  </script>
+</body>
+</html>
